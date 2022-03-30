@@ -1,13 +1,13 @@
 <?php
-$nama_file = date('Y-m-d')."_laporan_pegawai_penempatan_kerja.xls";    
-header("Pragma: public");   
-header("Expires: 0");   
-header("Cache-Control: must-revalidate, post-check=0,pre-check=0");     
-header("Content-Type: application/force-download");     
-header("Content-Type: application/octet-stream");   
-header("Content-Type: application/download");   
-header("Content-Disposition: attachment;filename=".$nama_file."");  
-header("Content-Transfer-Encoding: binary ");
+$nama_file = date('Y-m-d') . '_laporan_pegawai_penempatan_kerja.xls';
+header('Pragma: public');
+header('Expires: 0');
+header('Cache-Control: must-revalidate, post-check=0,pre-check=0');
+header('Content-Type: application/force-download');
+header('Content-Type: application/octet-stream');
+header('Content-Type: application/download');
+header('Content-Disposition: attachment;filename=' . $nama_file . '');
+header('Content-Transfer-Encoding: binary ');
 ?>
 <table>
 <tr>
@@ -52,47 +52,47 @@ header("Content-Transfer-Encoding: binary ");
         <td>TMT Eselon</td>
       </tr>
 	<?php
-		$no=1;
-		foreach($data_pegawai->result_array() as $dp)
-		{
-	?>
+        $no = 1;
+
+        foreach ($data_pegawai->result_array() as $dp) {
+            ?>
       <tr height="35">
-        <td><?php echo $no; ?></td>
-        <td><?php echo $dp['nip'].'<font color="white">_</font>'; ?></td>
-        <td><?php echo $dp['nip_lama'].'<font color="white">_</font>'; ?></td>
-        <td><?php echo $dp['no_kartu_pegawai']; ?></td>
-        <td><?php echo $dp['nama_pegawai']; ?></td>
-        <td><?php echo $dp['tempat_lahir'].' - '.$dp['tanggal_lahir']; ?></td>
-        <td><?php echo $dp['jenis_kelamin']; ?></td>
-        <td><?php echo $dp['agama']; ?></td>
-        <td><?php echo $dp['usia']; ?></td>
-        <td><?php echo $dp['status_pegawai']; ?></td>
-        <td><?php echo $dp['tanggal_pengangkatan_cpns']; ?></td>
-        <td><?php echo $dp['alamat']; ?></td>
-        <td><?php echo $dp['no_npwp']; ?></td>
-        <td><?php echo $dp['kartu_askes_pegawai']; ?></td>
-        <td><?php echo $dp['status_pegawai_pangkat']; ?></td>
-        <td><?php echo $dp['golongan']; ?></td>
-        <td><?php echo $dp['nomor_sk_pangkat']; ?></td>
-        <td><?php echo $dp['tanggal_sk_pangkat']; ?></td>
-        <td><?php echo $dp['tanggal_mulai_pangkat']; ?></td>
-        <td><?php echo $dp['tanggal_selesai_pangkat']; ?></td>
-        <td><?php echo $dp['nama_status_jabatan']; ?></td>
-        <td><?php echo $dp['nama_jabatan']; ?></td>
-        <td><?php echo $dp['nama_unit_kerja']; ?></td>
-        <td><?php echo $dp['nama_satuan_kerja']; ?></td>
-        <td><?php echo $dp['lokasi_kerja']; ?></td>
-        <td><?php echo $dp['nomor_sk_jabatan']; ?></td>
-        <td><?php echo $dp['tanggal_sk_jabatan']; ?></td>
-        <td><?php echo $dp['tanggal_mulai_jabatan']; ?></td>
-        <td><?php echo $dp['tanggal_selesai_jabatan']; ?></td>
-        <td><?php echo $dp['nama_eselon']; ?></td>
-        <td><?php echo $dp['tmt_eselon']; ?></td>
+        <td><?= $no; ?></td>
+        <td><?= $dp['nip'] . '<font color="white">_</font>'; ?></td>
+        <td><?= $dp['nip_lama'] . '<font color="white">_</font>'; ?></td>
+        <td><?= $dp['no_kartu_pegawai']; ?></td>
+        <td><?= $dp['nama_pegawai']; ?></td>
+        <td><?= $dp['tempat_lahir'] . ' - ' . $dp['tanggal_lahir']; ?></td>
+        <td><?= $dp['jenis_kelamin']; ?></td>
+        <td><?= $dp['agama']; ?></td>
+        <td><?= $dp['usia']; ?></td>
+        <td><?= $dp['status_pegawai']; ?></td>
+        <td><?= $dp['tanggal_pengangkatan_cpns']; ?></td>
+        <td><?= $dp['alamat']; ?></td>
+        <td><?= $dp['no_npwp']; ?></td>
+        <td><?= $dp['kartu_askes_pegawai']; ?></td>
+        <td><?= $dp['status_pegawai_pangkat']; ?></td>
+        <td><?= $dp['golongan']; ?></td>
+        <td><?= $dp['nomor_sk_pangkat']; ?></td>
+        <td><?= $dp['tanggal_sk_pangkat']; ?></td>
+        <td><?= $dp['tanggal_mulai_pangkat']; ?></td>
+        <td><?= $dp['tanggal_selesai_pangkat']; ?></td>
+        <td><?= $dp['nama_status_jabatan']; ?></td>
+        <td><?= $dp['nama_jabatan']; ?></td>
+        <td><?= $dp['nama_unit_kerja']; ?></td>
+        <td><?= $dp['nama_satuan_kerja']; ?></td>
+        <td><?= $dp['lokasi_kerja']; ?></td>
+        <td><?= $dp['nomor_sk_jabatan']; ?></td>
+        <td><?= $dp['tanggal_sk_jabatan']; ?></td>
+        <td><?= $dp['tanggal_mulai_jabatan']; ?></td>
+        <td><?= $dp['tanggal_selesai_jabatan']; ?></td>
+        <td><?= $dp['nama_eselon']; ?></td>
+        <td><?= $dp['tmt_eselon']; ?></td>
       </tr>
 	 <?php
-	 		$no++;
-	 	}
-	 ?>
+            $no++;
+        }
+     ?>
   </table>
 </td>
 </tr>

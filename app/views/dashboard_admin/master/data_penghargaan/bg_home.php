@@ -8,13 +8,13 @@
 		  <a class="brand" href="#">Data Penghargaan</a>
 		  <div class="nav-collapse">
 			<ul class="nav">
-			  <li><a href="<?php echo base_url(); ?>data_penghargaan/tambah/<?php echo $this->session->userdata('kode_pegawai'); ?>" 
+			  <li><a href="<?= base_url(); ?>data_penghargaan/tambah/<?= $this->session->userdata('kode_pegawai'); ?>"
 			  class="medium-box"><i class="icon-plus-sign icon-white"></i> Tambah Data Penghargaan</a></li>
 			</ul>
 		  </div>
 			<div class="span6 pull-right">
 				<div class="btn-group pull-right">
-				  <button class="btn btn-primary"><i class="icon-user icon-white"></i> <?php echo $this->session->userdata('nama_pegawai'); ?></button>
+				  <button class="btn btn-primary"><i class="icon-user icon-white"></i> <?= $this->session->userdata('nama_pegawai'); ?></button>
 				  <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 					<span class="caret"></span>
 				  </button>
@@ -35,30 +35,30 @@
     </thead>
     <tbody>
 	<?php
-		$no=1;
-		foreach($data->result_array() as $drj)
-		{
-	?>
+        $no = 1;
+
+        foreach ($data->result_array() as $drj) {
+            ?>
       <tr>
-        <td><?php echo $no; ?></td>
-        <td><?php echo $drj['nama_penghargaan']; ?></td>
-        <td><?php echo $drj['nomor_sk']; ?></td>
-        <td><?php echo $drj['tanggal_sk']; ?></td>
+        <td><?= $no; ?></td>
+        <td><?= $drj['nama_penghargaan']; ?></td>
+        <td><?= $drj['nomor_sk']; ?></td>
+        <td><?= $drj['tanggal_sk']; ?></td>
 		<td>
 	        <div class="btn-group">
-	          <a class="btn btn-small medium-box" href="<?php echo base_url(); ?>data_penghargaan/detail/<?php echo $drj['id_penghargaan']; ?>"><i class="icon-ok-circle"></i> Lihat Detail</a>
+	          <a class="btn btn-small medium-box" href="<?= base_url(); ?>data_penghargaan/detail/<?= $drj['id_penghargaan']; ?>"><i class="icon-ok-circle"></i> Lihat Detail</a>
 	          <a class="btn btn-small dropdown-toggle" data-toggle="dropdown" href="#"><span class="caret"></span></a>
 	          <ul class="dropdown-menu">
-	            <li><a href="<?php echo base_url(); ?>data_penghargaan/edit/<?php echo $drj['id_penghargaan']; ?>" class="medium-box"><i class="icon-pencil"></i> Edit Data</a></li>
-	            <li><a href="<?php echo base_url(); ?>data_penghargaan/hapus/<?php echo $drj['id_penghargaan']; ?>" onClick="return confirm('Anda yakin..???');"><i class="icon-trash"></i> Hapus Data</a></li>
+	            <li><a href="<?= base_url(); ?>data_penghargaan/edit/<?= $drj['id_penghargaan']; ?>" class="medium-box"><i class="icon-pencil"></i> Edit Data</a></li>
+	            <li><a href="<?= base_url(); ?>data_penghargaan/hapus/<?= $drj['id_penghargaan']; ?>" onClick="return confirm('Anda yakin..???');"><i class="icon-trash"></i> Hapus Data</a></li>
 	          </ul>
 	        </div><!-- /btn-group -->
 		</td>
       </tr>
 	 <?php
-	 		$no++;
-	 	}
-	 ?>
+            $no++;
+        }
+     ?>
     </tbody>
   </table>
   </div>
@@ -66,7 +66,7 @@
 
 
       <footer class="well">
-        <p><?php echo $credit; ?></p>
+        <p><?= $credit; ?></p>
       </footer>
 
     </div> <!-- /container -->
