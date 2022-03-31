@@ -1,8 +1,8 @@
-<?php if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
+<?php
 
-class Pegawai extends CI_Controller
+namespace App\Controllers;
+
+class Pegawai extends BaseController
 {
     /*
         ***	Controller : pegawai.php
@@ -17,7 +17,7 @@ class Pegawai extends CI_Controller
 
     public function detail()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $d['judul_lengkap'] = $this->config->item('nama_aplikasi_full');
             $d['judul_pendek']  = $this->config->item('nama_aplikasi_pendek');
             $d['instansi']      = $this->config->item('nama_instansi');
@@ -111,7 +111,7 @@ class Pegawai extends CI_Controller
 
     public function tambah()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $d['id_param']                  = '';
             $d['nip']                       = '';
             $d['nip_lama']                  = '';
@@ -162,8 +162,8 @@ class Pegawai extends CI_Controller
 
     public function hapus()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
-            $id['id_pegawai'] = $this->session->userdata('kode_pegawai');
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
+            $id['id_pegawai'] = session('kode_pegawai');
             $this->db->delete('tbl_data_pegawai', $id);
             $this->db->delete('tbl_data_dp3', $id);
             $this->db->delete('tbl_data_gaji_pokok', $id);
@@ -184,7 +184,7 @@ class Pegawai extends CI_Controller
 
     public function edit()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $d['judul_lengkap'] = $this->config->item('nama_aplikasi_full');
             $d['judul_pendek']  = $this->config->item('nama_aplikasi_pendek');
             $d['instansi']      = $this->config->item('nama_instansi');
@@ -193,7 +193,7 @@ class Pegawai extends CI_Controller
 
             $id['kode_pegawai'] = $this->uri->segment(3);
             $this->session->set_userdata($id);
-            $kode['id_pegawai'] = $this->session->userdata('kode_pegawai');
+            $kode['id_pegawai'] = session('kode_pegawai');
 
             $q          = $this->db->get_where('tbl_data_pegawai', $kode);
             $set_detail = $q->row();
@@ -253,7 +253,7 @@ class Pegawai extends CI_Controller
 
     public function simpan()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $d['judul_lengkap'] = $this->config->item('nama_aplikasi_full');
             $d['judul_pendek']  = $this->config->item('nama_aplikasi_pendek');
             $d['instansi']      = $this->config->item('nama_instansi');
@@ -517,7 +517,7 @@ class Pegawai extends CI_Controller
 
                     $this->db->update('tbl_data_pegawai', $upd, $id);
 
-                    header('location:' . base_url() . 'pegawai/edit/' . $this->session->userdata('kode_pegawai') . '');
+                    header('location:' . base_url() . 'pegawai/edit/' . session('kode_pegawai') . '');
                 } elseif ($st === 'tambah') {
                     $in['nip']                       = $this->input->post('nip');
                     $in['nip_lama']                  = $this->input->post('nip_lama');

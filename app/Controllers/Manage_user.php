@@ -1,8 +1,8 @@
-<?php if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
+<?php
 
-class Manage_user extends CI_Controller
+namespace App\Controllers;
+
+class Manage_user extends BaseController
 {
     /*
         ***	Controller : manage_user.php
@@ -12,7 +12,7 @@ class Manage_user extends CI_Controller
 
     public function index()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $d['judul_lengkap'] = $this->config->item('nama_aplikasi_full');
             $d['judul_pendek']  = $this->config->item('nama_aplikasi_pendek');
             $d['instansi']      = $this->config->item('nama_instansi');
@@ -49,7 +49,7 @@ class Manage_user extends CI_Controller
 
     public function edit()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $id['id_user_login'] = $this->uri->segment(3);
             $q                   = $this->db->get_where('tbl_user_login', $id);
             $d                   = [];
@@ -70,7 +70,7 @@ class Manage_user extends CI_Controller
 
     public function detail()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $id['id_user_login'] = $this->uri->segment(3);
             $q                   = $this->db->get_where('tbl_user_login', $id);
             $d                   = [];
@@ -91,7 +91,7 @@ class Manage_user extends CI_Controller
 
     public function tambah()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $d['id_param']     = '';
             $d['username']     = '';
             $d['password']     = '';
@@ -105,7 +105,7 @@ class Manage_user extends CI_Controller
 
     public function hapus()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $id['id_user_login'] = $this->uri->segment(3);
             $this->db->delete('tbl_user_login', $id);
             header('location:' . base_url() . 'manage_user');
@@ -116,7 +116,7 @@ class Manage_user extends CI_Controller
 
     public function simpan()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $this->form_validation->set_rules('username', 'Username', 'trim|required');
             $this->form_validation->set_rules('nama_lengkap', 'Nama Lengkap', 'trim|required');
             $id['id_user_login'] = $this->input->post('id_param');

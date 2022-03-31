@@ -1,10 +1,8 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
+namespace App\Controllers;
 
-class Dashboard_admin extends CI_Controller
+class Dashboard_admin extends BaseController
 {
     /*
         ***	Controller : dashboard_admin.php
@@ -14,7 +12,7 @@ class Dashboard_admin extends CI_Controller
 
     public function index()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $d['judul_lengkap'] = $this->config->item('nama_aplikasi_full');
             $d['judul_pendek']  = $this->config->item('nama_aplikasi_pendek');
             $d['instansi']      = $this->config->item('nama_instansi');
@@ -53,7 +51,7 @@ class Dashboard_admin extends CI_Controller
 
     public function cari()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $d['judul_lengkap'] = $this->config->item('nama_aplikasi_full');
             $d['judul_pendek']  = $this->config->item('nama_aplikasi_pendek');
             $d['instansi']      = $this->config->item('nama_instansi');
@@ -61,11 +59,11 @@ class Dashboard_admin extends CI_Controller
             $d['alamat']        = $this->config->item('alamat_instansi');
 
             if ($this->input->post('cari') === '') {
-                $kata = $this->session->userdata('kata');
+                $kata = session('kata');
             } else {
                 $sess_data['kata'] = $this->input->post('cari');
                 $this->session->set_userdata($sess_data);
-                $kata = $this->session->userdata('kata');
+                $kata = session('kata');
             }
 
             $page  = $this->uri->segment(3);

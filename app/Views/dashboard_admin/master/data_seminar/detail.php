@@ -33,7 +33,7 @@
 	<?php } ?>
 		<?= form_open('data_keluarga/simpan', 'class="form-horizontal"'); ?>
 		  <div class="control-group">
-		  	<legend>Data Seminar - <?= $this->session->userdata('nama_pegawai'); ?></legend>
+		  	<legend>Data Seminar - <?= session('nama_pegawai'); ?></legend>
 			<label class="control-label" for="uraian">Uraian</label>
 			<div class="controls">
 			  <textarea type="text" class="span6" name="uraian" id="uraian"

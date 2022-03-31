@@ -79,7 +79,7 @@
               </li>
             </ul>
             <div class="btn-group pull-right">
-			  <button class="btn btn-primary"><i class="icon-user icon-white"></i> <?= $this->session->userdata('nama'); ?></button>
+			  <button class="btn btn-primary"><i class="icon-user icon-white"></i> <?= session('nama'); ?></button>
 			  <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 				<span class="caret"></span>
 			  </button>
@@ -120,7 +120,7 @@
 			<option value="">- Unit Kerja -</option>
 			  	<?php
                     foreach ($mst_unit_kerja->result_array() as $muk) {
-                        if ($this->session->userdata('id_unit_kerja') === $muk['id_unit_kerja']) {
+                        if (session('id_unit_kerja') === $muk['id_unit_kerja']) {
                             ?>
 			  		<option value="<?= $muk['id_unit_kerja']; ?>" selected="selected"><?= $muk['nama_unit_kerja']; ?></option>
 			  	<?php
@@ -139,7 +139,7 @@
 			<select class="span3" name="id_satuan_kerja">
 			<option value="">- Satuan Kerja -</option>
 			<?php
-            if ($this->session->userdata('id_satuan_kerja') === 'Semua') {
+            if (session('id_satuan_kerja') === 'Semua') {
                 ?>
 				<option value="Semua" selected="selected">Semua Satuan Kerja</option>
 			<?php
@@ -150,7 +150,7 @@
             }
 
                     foreach ($mst_satuan_kerja->result_array() as $msk) {
-                        if ($this->session->userdata('id_satuan_kerja') === $msk['id_satuan_kerja']) {
+                        if (session('id_satuan_kerja') === $msk['id_satuan_kerja']) {
                             ?>
 			  		<option value="<?= $msk['id_satuan_kerja']; ?>" selected="selected"><?= $msk['nama_satuan_kerja']; ?></option>
 			  	<?php

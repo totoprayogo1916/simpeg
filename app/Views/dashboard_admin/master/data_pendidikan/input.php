@@ -42,7 +42,7 @@
 	<?php } ?>
 		<?= form_open('data_pendidikan/simpan', 'class="form-horizontal"'); ?>
 		  <div class="control-group">
-		  	<legend>Data Pendidikan - <?= $this->session->userdata('nama_pegawai'); ?></legend>
+		  	<legend>Data Pendidikan - <?= session('nama_pegawai'); ?></legend>
 			<label class="control-label" for="tingkat_pendidikan">Tingkat Pendidikan</label>
 			<div class="controls">
 			  <input type="text" class="span6" name="tingkat_pendidikan" id="tingkat_pendidikan" value="<?= $tingkat_pendidikan; ?>"

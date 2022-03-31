@@ -1,8 +1,8 @@
-<?php if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
+<?php
 
-class Data_pendidikan extends CI_Controller
+namespace App\Controllers;
+
+class Data_pendidikan extends BaseController
 {
     /*
         ***	Controller : data_pendidikan.php
@@ -12,7 +12,7 @@ class Data_pendidikan extends CI_Controller
 
     public function index()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $d['judul_lengkap'] = $this->config->item('nama_aplikasi_full');
             $d['judul_pendek']  = $this->config->item('nama_aplikasi_pendek');
             $d['instansi']      = $this->config->item('nama_instansi');
@@ -21,7 +21,7 @@ class Data_pendidikan extends CI_Controller
 
             $id['kode_pegawai'] = $this->uri->segment(3);
             $this->session->set_userdata($id);
-            $kode['id_pegawai'] = $this->session->userdata('kode_pegawai');
+            $kode['id_pegawai'] = session('kode_pegawai');
 
             $page  = $this->uri->segment(4);
             $limit = $this->config->item('limit_data');
@@ -54,7 +54,7 @@ class Data_pendidikan extends CI_Controller
 
     public function edit()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $id['id_pendidikan'] = $this->uri->segment(3);
             $q                   = $this->db->get_where('tbl_data_pendidikan', $id);
             $d                   = [];
@@ -82,7 +82,7 @@ class Data_pendidikan extends CI_Controller
 
     public function detail()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $id['id_pendidikan'] = $this->uri->segment(3);
             $q                   = $this->db->get_where('tbl_data_pendidikan', $id);
             $d                   = [];
@@ -110,9 +110,9 @@ class Data_pendidikan extends CI_Controller
 
     public function tambah()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $d['id_param']           = '';
-            $d['id_pegawai']         = $this->session->userdata('kode_pegawai');
+            $d['id_pegawai']         = session('kode_pegawai');
             $d['tingkat_pendidikan'] = '';
             $d['jurusan']            = '';
             $d['uraian']             = '';
@@ -132,10 +132,10 @@ class Data_pendidikan extends CI_Controller
 
     public function hapus()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $id['id_pendidikan'] = $this->uri->segment(3);
             $this->db->delete('tbl_data_pendidikan', $id);
-            header('location:' . base_url() . 'data_pendidikan/index/' . $this->session->userdata('kode_pegawai') . '');
+            header('location:' . base_url() . 'data_pendidikan/index/' . session('kode_pegawai') . '');
         } else {
             header('location:' . base_url() . '');
         }
@@ -143,7 +143,7 @@ class Data_pendidikan extends CI_Controller
 
     public function simpan()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $this->form_validation->set_rules('id_pegawai', 'Id Pegawai', 'trim|required');
             $this->form_validation->set_rules('tingkat_pendidikan', 'Tingkat Pendidikan', 'trim|required');
             $this->form_validation->set_rules('jurusan', 'Jurusan', 'trim|required');
@@ -181,7 +181,7 @@ class Data_pendidikan extends CI_Controller
                     $this->load->view('dashboard_admin/master/data_pendidikan/input', $d);
                 } elseif ($st === 'tambah') {
                     $d['id_param']           = '';
-                    $d['id_pegawai']         = $this->session->userdata('kode_pegawai');
+                    $d['id_pegawai']         = session('kode_pegawai');
                     $d['tingkat_pendidikan'] = '';
                     $d['jurusan']            = '';
                     $d['uraian']             = '';

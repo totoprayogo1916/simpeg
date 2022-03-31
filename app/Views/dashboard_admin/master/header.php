@@ -80,7 +80,7 @@
               </li>
             </ul>
             <div class="btn-group pull-right">
-			  <button class="btn btn-primary"><i class="icon-user icon-white"></i> <?= $this->session->userdata('nama'); ?></button>
+			  <button class="btn btn-primary"><i class="icon-user icon-white"></i> <?= session('nama'); ?></button>
 			  <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 				<span class="caret"></span>
 			  </button>
@@ -109,18 +109,18 @@
 	<header class="jumbotron subhead" id="overview">
 	  <div class="subnav">
 		<ul class="nav nav-pills">
-		  <li><a href="<?= base_url(); ?>pegawai/edit/<?= $this->session->userdata('kode_pegawai'); ?>">Pegawai</a></li>
-		  <li><a href="<?= base_url(); ?>data_keluarga/index/<?= $this->session->userdata('kode_pegawai'); ?>">Keluarga</a></li>
-		  <li><a href="<?= base_url(); ?>data_riwayat_pangkat/index/<?= $this->session->userdata('kode_pegawai'); ?>">Riwayat Pangkat</a></li>
-		  <li><a href="<?= base_url(); ?>data_riwayat_jabatan/index/<?= $this->session->userdata('kode_pegawai'); ?>">Riwayat Jabatan</a></li>
-		  <li><a href="<?= base_url(); ?>data_pendidikan/index/<?= $this->session->userdata('kode_pegawai'); ?>">Pendidikan</a></li>
-		  <li><a href="<?= base_url(); ?>data_pelatihan/index/<?= $this->session->userdata('kode_pegawai'); ?>">Pelatihan</a></li>
-		  <li><a href="<?= base_url(); ?>data_penghargaan/index/<?= $this->session->userdata('kode_pegawai'); ?>">Penghargaan</a></li>
-		  <li><a href="<?= base_url(); ?>data_seminar/index/<?= $this->session->userdata('kode_pegawai'); ?>">Seminar</a></li>
-		  <li><a href="<?= base_url(); ?>data_organisasi/index/<?= $this->session->userdata('kode_pegawai'); ?>">Organisasi</a></li>
-		  <li><a href="<?= base_url(); ?>data_gaji_pokok/index/<?= $this->session->userdata('kode_pegawai'); ?>">Gaji Pokok</a></li>
-		  <li><a href="<?= base_url(); ?>data_hukuman/index/<?= $this->session->userdata('kode_pegawai'); ?>">Hukuman</a></li>
-		  <li><a href="<?= base_url(); ?>data_dp3/index/<?= $this->session->userdata('kode_pegawai'); ?>">DP3</a></li>
+		  <li><a href="<?= base_url(); ?>pegawai/edit/<?= session('kode_pegawai'); ?>">Pegawai</a></li>
+		  <li><a href="<?= base_url(); ?>data_keluarga/index/<?= session('kode_pegawai'); ?>">Keluarga</a></li>
+		  <li><a href="<?= base_url(); ?>data_riwayat_pangkat/index/<?= session('kode_pegawai'); ?>">Riwayat Pangkat</a></li>
+		  <li><a href="<?= base_url(); ?>data_riwayat_jabatan/index/<?= session('kode_pegawai'); ?>">Riwayat Jabatan</a></li>
+		  <li><a href="<?= base_url(); ?>data_pendidikan/index/<?= session('kode_pegawai'); ?>">Pendidikan</a></li>
+		  <li><a href="<?= base_url(); ?>data_pelatihan/index/<?= session('kode_pegawai'); ?>">Pelatihan</a></li>
+		  <li><a href="<?= base_url(); ?>data_penghargaan/index/<?= session('kode_pegawai'); ?>">Penghargaan</a></li>
+		  <li><a href="<?= base_url(); ?>data_seminar/index/<?= session('kode_pegawai'); ?>">Seminar</a></li>
+		  <li><a href="<?= base_url(); ?>data_organisasi/index/<?= session('kode_pegawai'); ?>">Organisasi</a></li>
+		  <li><a href="<?= base_url(); ?>data_gaji_pokok/index/<?= session('kode_pegawai'); ?>">Gaji Pokok</a></li>
+		  <li><a href="<?= base_url(); ?>data_hukuman/index/<?= session('kode_pegawai'); ?>">Hukuman</a></li>
+		  <li><a href="<?= base_url(); ?>data_dp3/index/<?= session('kode_pegawai'); ?>">DP3</a></li>
 		</ul>
 	  </div>
 	</header>

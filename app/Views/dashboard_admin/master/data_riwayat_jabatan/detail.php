@@ -33,7 +33,7 @@
 	<?php } ?>
 		<?= form_open('data_keluarga/simpan', 'class="form-horizontal"'); ?>
 		  <div class="control-group">
-		  	<legend>Data Riwayat Jabatan - <?= $this->session->userdata('nama_pegawai'); ?></legend>
+		  	<legend>Data Riwayat Jabatan - <?= session('nama_pegawai'); ?></legend>
 			<label class="control-label" for="status">Status</label>
 			<div class="controls">
 			  <input type="text" class="span6" name="status" id="status" value="<?= $status; ?>"

@@ -45,7 +45,7 @@
 	<?php } ?>
 		<?= form_open('data_hukuman/simpan', 'class="form-horizontal"'); ?>
 		  <div class="control-group">
-		  	<legend>Data Hukuman - <?= $this->session->userdata('nama_pegawai'); ?></legend>
+		  	<legend>Data Hukuman - <?= session('nama_pegawai'); ?></legend>
 			<label class="control-label" for="id_master_hukuman">Hukuman</label>
 			<div class="controls">
 			  <select name="id_master_hukuman" id="id_master_hukuman" data-placeholder="Hukuman" class="chzn-select" style="width:300px;" tabindex="2">

@@ -2,22 +2,22 @@
 
 <section id="data-keluarga">
   <div class="well">
-  	<?= $this->session->flashdata('pass'); ?>
+  	<?= session()->getFlashdata('pass'); ?>
     <?php if (validation_errors()) { ?>
 	<div class="alert alert-block">
-	  <button type="button" class="close" data-dismiss="alert">×</button>
+	  <button type="button" class="close" data-dismiss="alert">ï¿½</button>
 	  	<h4>Terjadi Kesalahan!</h4>
 		<?= validation_errors(); ?>
 	</div>
 	<?php } ?>
 	<div class="tabbable tabs-left">
 	<?php
-        if ($this->session->userdata('tab_a') === '' && $this->session->userdata('tab_b') === '') {
+        if (session('tab_a') === '' && session('tab_b') === '') {
             $set['tab_a'] = 'active';
             $this->session->set_userdata($set);
         }
-        $a = $this->session->userdata('tab_a');
-        $b = $this->session->userdata('tab_b');
+        $a = session('tab_a');
+        $b = session('tab_b');
     ?>
 	  <ul class="nav nav-tabs">
 		<li class="<?= $a; ?>"><a href="#lA" data-toggle="tab">Pengaturan Password</a></li>
@@ -31,7 +31,7 @@
 				<div class="control-group">
 					<label class="control-label" for="pass_lama">Username</label>
 					<div class="controls">
-					  <input type="text" value="<?= $this->session->userdata('username'); ?>"
+					  <input type="text" value="<?= session('username'); ?>"
 					  class="span4" name="username" id="username" placeholder="Username" readonly="true">
 					</div>
 					<label class="control-label" for="pass_lama">Password Lama</label>
@@ -61,7 +61,7 @@
 					<div class="control-group">
 						<label class="control-label" for="pass_lama">Nama Pengguna</label>
 						<div class="controls">
-						  <input type="text" value="<?= $this->session->userdata('nama'); ?>"
+						  <input type="text" value="<?= session('nama'); ?>"
 						  class="span4" name="nama_lengkap" id="nama_lengkap" placeholder="Nama Pengguna">
 						</div>
 					</div>

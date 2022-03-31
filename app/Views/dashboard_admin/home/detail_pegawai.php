@@ -58,7 +58,7 @@
               </li>
             </ul>
             <div class="btn-group pull-right">
-			  <button class="btn btn-primary"><i class="icon-user icon-white"></i> <?= $this->session->userdata('nama'); ?></button>
+			  <button class="btn btn-primary"><i class="icon-user icon-white"></i> <?= session('nama'); ?></button>
 			  <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 				<span class="caret"></span>
 			  </button>

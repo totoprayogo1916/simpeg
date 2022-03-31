@@ -33,7 +33,7 @@
 	<?php } ?>
 		<?= form_open('data_keluarga/simpan', 'class="form-horizontal"'); ?>
 		  <div class="control-group">
-		  	<legend>Data Riwayat Pangkat - <?= $this->session->userdata('nama_pegawai'); ?></legend>
+		  	<legend>Data Riwayat Pangkat - <?= session('nama_pegawai'); ?></legend>
 			<label class="control-label" for="golongan">Golongan</label>
 			<div class="controls">
 			  <select name="id_golongan">

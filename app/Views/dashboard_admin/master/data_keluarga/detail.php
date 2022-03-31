@@ -33,7 +33,7 @@
 	<?php } ?>
 		<?= form_open('data_keluarga/simpan', 'class="form-horizontal"'); ?>
 		  <div class="control-group">
-		  	<legend>Data Keluarga - <?= $this->session->userdata('nama_pegawai'); ?></legend>
+		  	<legend>Data Keluarga - <?= session('nama_pegawai'); ?></legend>
 			<label class="control-label" for="nama_anggota_keluarga">Nama Anggota Keluarga</label>
 			<div class="controls">
 			  <input type="text" class="span6" name="nama_anggota_keluarga" id="nama_anggota_keluarga" value="<?= $nama_anggota_keluarga; ?>"

@@ -8,13 +8,13 @@
 		  <a class="brand" href="#">Data Keluarga</a>
 		  <div class="nav-collapse">
 			<ul class="nav">
-			  <li><a href="<?= base_url(); ?>data_keluarga/tambah/<?= $this->session->userdata('kode_pegawai'); ?>"
+			  <li><a href="<?= base_url(); ?>data_keluarga/tambah/<?= session('kode_pegawai'); ?>"
 			  class="medium-box"><i class="icon-plus-sign icon-white"></i> Tambah Data Keluarga</a></li>
 			</ul>
 		  </div>
 			<div class="span6 pull-right">
 				<div class="btn-group pull-right">
-				  <button class="btn btn-primary"><i class="icon-user icon-white"></i> <?= $this->session->userdata('nama_pegawai'); ?></button>
+				  <button class="btn btn-primary"><i class="icon-user icon-white"></i> <?= session('nama_pegawai'); ?></button>
 				  <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 					<span class="caret"></span>
 				  </button>

@@ -1,52 +1,57 @@
 <?php
 
-if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
+namespace App\Controllers;
 
-class App extends CI_Controller
+use Config\Services;
+
+/*
+    ***	Controller : app.php
+    ***	by Gede Lumbung
+    ***	http://gedelumbung.com
+*/
+class App extends BaseController
 {
-    /*
-        ***	Controller : app.php
-        ***	by Gede Lumbung
-        ***	http://gedelumbung.com
-    */
-
     public function index()
     {
-        if ($this->session->userdata('logged_in') === '') {
-            $d['judul_lengkap'] = $this->config->item('nama_aplikasi_full');
-            $d['judul_pendek']  = $this->config->item('nama_aplikasi_pendek');
-            $d['instansi']      = $this->config->item('nama_instansi');
-            $d['credit']        = $this->config->item('credit_aplikasi');
+        $config          = config('Simpeg');
+        $validation      = Services::validation();
+        $d['validation'] = $validation;
 
-            $this->form_validation->set_rules('username', 'Username', 'trim|required');
-            $this->form_validation->set_rules('password', 'Password', 'trim|required');
+        if (session('logged_in') === null) {
+            $d['judul_lengkap'] = $config->nama_aplikasi_full;
+            $d['judul_pendek']  = $config->nama_aplikasi_pendek;
+            $d['instansi']      = $config->nama_instansi;
+            $d['credit']        = $config->credit_aplikasi;
 
-            if ($this->form_validation->run() === false) {
-                $this->load->view('app/login', $d);
-            } else {
-                $dt['username'] = $this->input->post('username');
-                $dt['password'] = $this->input->post('password');
-                $this->app_login_model->getLoginData($dt);
+            $validation->setRules([
+                'username' => ['label' => 'username', 'rules' => 'required'],
+                'password' => ['label' => 'password', 'rules' => 'required'],
+            ]);
+
+            if (! $validation->withRequest($this->request)->run()) {
+                return view('app/login', $d);
             }
-        } elseif ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
-            header('location:' . base_url() . 'dashboard_admin');
-        } elseif ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'operator') {
-            header('location:' . base_url() . 'dashboard_operator');
-        } elseif ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'executive') {
-            header('location:' . base_url() . 'dashboard_executive');
+            $dt['username'] = $this->input->post('username');
+            $dt['password'] = $this->input->post('password');
+            $this->app_login_model->getLoginData($dt);
+        } elseif (session('logged_in') !== null && session('stts') === 'administrator') {
+            header('location:' . base_url() . '/dashboard_admin');
+        } elseif (session('logged_in') !== null && session('stts') === 'operator') {
+            header('location:' . base_url() . '/dashboard_operator');
+        } elseif (session('logged_in') !== null && session('stts') === 'executive') {
+            header('location:' . base_url() . '/dashboard_executive');
         }
     }
 
     public function change_password()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
-            $d['judul_lengkap'] = $this->config->item('nama_aplikasi_full');
-            $d['judul_pendek']  = $this->config->item('nama_aplikasi_pendek');
-            $d['instansi']      = $this->config->item('nama_instansi');
-            $d['credit']        = $this->config->item('credit_aplikasi');
-            $d['alamat']        = $this->config->item('alamat_instansi');
+        $config = config('Simpeg');
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
+            $d['judul_lengkap'] = $config->nama_aplikasi_full;
+            $d['judul_pendek']  = $config->nama_aplikasi_pendek;
+            $d['instansi']      = $config->nama_instansi;
+            $d['credit']        = $config->credit_aplikasi;
+            $d['alamat']        = $config->alamat_instansi;
 
             $this->load->view('dashboard_admin/user/header', $d);
             $this->load->view('dashboard_admin/user/bg_change_password');
@@ -57,7 +62,9 @@ class App extends CI_Controller
 
     public function save_pass()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        $config = config('Simpeg');
+
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $this->form_validation->set_rules('pass_lama', 'Password Lama', 'trim|required');
             $this->form_validation->set_rules('pass_baru', 'Password Baru', 'trim|required');
             $this->form_validation->set_rules('ulangi_pass_baru', 'Ulangi Password Baru', 'trim|required');
@@ -72,11 +79,11 @@ class App extends CI_Controller
             $this->session->set_userdata($set);
 
             if ($this->form_validation->run() === false) {
-                $d['judul_lengkap'] = $this->config->item('nama_aplikasi_full');
-                $d['judul_pendek']  = $this->config->item('nama_aplikasi_pendek');
-                $d['instansi']      = $this->config->item('nama_instansi');
-                $d['credit']        = $this->config->item('credit_aplikasi');
-                $d['alamat']        = $this->config->item('alamat_instansi');
+                $d['judul_lengkap'] = $config->nama_aplikasi_full;
+                $d['judul_pendek']  = $config->nama_aplikasi_pendek;
+                $d['instansi']      = $config->nama_instansi;
+                $d['credit']        = $config->credit_aplikasi;
+                $d['alamat']        = $config->alamat_instansi;
 
                 $this->load->view('dashboard_admin/user/header', $d);
                 $this->load->view('dashboard_admin/user/bg_change_password');
@@ -106,7 +113,8 @@ class App extends CI_Controller
 
     public function save_name()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        $config = config('Simpeg');
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $this->form_validation->set_rules('nama_lengkap', 'Nama Pengguna', 'trim|required');
 
             $id['username'] = $this->input->post('usernname');
@@ -117,11 +125,11 @@ class App extends CI_Controller
             $this->session->set_userdata($set);
 
             if ($this->form_validation->run() === false) {
-                $d['judul_lengkap'] = $this->config->item('nama_aplikasi_full');
-                $d['judul_pendek']  = $this->config->item('nama_aplikasi_pendek');
-                $d['instansi']      = $this->config->item('nama_instansi');
-                $d['credit']        = $this->config->item('credit_aplikasi');
-                $d['alamat']        = $this->config->item('alamat_instansi');
+                $d['judul_lengkap'] = $config->nama_aplikasi_full;
+                $d['judul_pendek']  = $config->nama_aplikasi_pendek;
+                $d['instansi']      = $config->nama_instansi;
+                $d['credit']        = $config->credit_aplikasi;
+                $d['alamat']        = $config->alamat_instansi;
 
                 $this->load->view('dashboard_admin/user/header', $d);
                 $this->load->view('dashboard_admin/user/bg_change_password');

@@ -79,7 +79,7 @@
               </li>
             </ul>
             <div class="btn-group pull-right">
-			  <button class="btn btn-primary"><i class="icon-user icon-white"></i> <?= $this->session->userdata('nama'); ?></button>
+			  <button class="btn btn-primary"><i class="icon-user icon-white"></i> <?= session('nama'); ?></button>
 			  <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 				<span class="caret"></span>
 			  </button>
@@ -120,7 +120,7 @@
 			<option value="">- Status Pegawai -</option>
 			  	<?php
                     foreach ($mst_status_pegawai->result_array() as $msk) {
-                        if ($this->session->userdata('id_status_pegawai') === $msk['id_status_pegawai']) {
+                        if (session('id_status_pegawai') === $msk['id_status_pegawai']) {
                             ?>
 			  		<option value="<?= $msk['id_status_pegawai']; ?>" selected="selected"><?= $msk['nama_status']; ?></option>
 			  	<?php
@@ -141,7 +141,7 @@
 			<option value="">- Golongan -</option>
 			  	<?php
                     foreach ($mst_golongan->result_array() as $msk) {
-                        if ($this->session->userdata('id_golongan') === $msk['id_golongan']) {
+                        if (session('id_golongan') === $msk['id_golongan']) {
                             ?>
 			  		<option value="<?= $msk['id_golongan']; ?>" selected="selected"><?= $msk['golongan']; ?></option>
 			  	<?php
@@ -161,7 +161,7 @@
 			<select class="span3" name="id_satuan_kerja">
 			<option value="">- Satuan Kerja -</option>
 			<?php
-            if ($this->session->userdata('id_satuan_kerja') === 'Semua') {
+            if (session('id_satuan_kerja') === 'Semua') {
                 ?>
 				<option value="Semua" selected="selected">Semua Satuan Kerja</option>
 			<?php
@@ -172,7 +172,7 @@
             }
 
                     foreach ($mst_satuan_kerja->result_array() as $msk) {
-                        if ($this->session->userdata('id_satuan_kerja') === $msk['id_satuan_kerja']) {
+                        if (session('id_satuan_kerja') === $msk['id_satuan_kerja']) {
                             ?>
 			  		<option value="<?= $msk['id_satuan_kerja']; ?>" selected="selected"><?= $msk['nama_satuan_kerja']; ?></option>
 			  	<?php

@@ -43,7 +43,7 @@
 	<?php } ?>
 		<?= form_open('data_penghargaan/simpan', 'class="form-horizontal"'); ?>
 		  <div class="control-group">
-		  	<legend>Data Penghargaan - <?= $this->session->userdata('nama_pegawai'); ?></legend>
+		  	<legend>Data Penghargaan - <?= session('nama_pegawai'); ?></legend>
 			<label class="control-label" for="id_master_penghargaan">Nama Penghargaan</label>
 			<div class="controls">
 			  <select name="id_master_penghargaan" id="id_master_penghargaan" data-placeholder="Nama Penghargaan" class="chzn-select" style="width:300px;" tabindex="2">

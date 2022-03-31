@@ -1,8 +1,8 @@
-<?php if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
+<?php
 
-class Data_riwayat_jabatan extends CI_Controller
+namespace App\Controllers;
+
+class Data_riwayat_jabatan extends BaseController
 {
     /*
         ***	Controller : data_riwayat_jabatan.php
@@ -12,7 +12,7 @@ class Data_riwayat_jabatan extends CI_Controller
 
     public function index()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $d['judul_lengkap'] = $this->config->item('nama_aplikasi_full');
             $d['judul_pendek']  = $this->config->item('nama_aplikasi_pendek');
             $d['instansi']      = $this->config->item('nama_instansi');
@@ -21,7 +21,7 @@ class Data_riwayat_jabatan extends CI_Controller
 
             $id['kode_pegawai'] = $this->uri->segment(3);
             $this->session->set_userdata($id);
-            $kode['id_pegawai'] = $this->session->userdata('kode_pegawai');
+            $kode['id_pegawai'] = session('kode_pegawai');
 
             $page  = $this->uri->segment(4);
             $limit = $this->config->item('limit_data');
@@ -60,7 +60,7 @@ class Data_riwayat_jabatan extends CI_Controller
 
     public function edit()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $id['id_riwayat_jabatan'] = $this->uri->segment(3);
             $q                        = $this->db->get_where('tbl_data_riwayat_jabatan', $id);
             $d                        = [];
@@ -95,7 +95,7 @@ class Data_riwayat_jabatan extends CI_Controller
 
     public function detail()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $id['id_riwayat_jabatan'] = $this->uri->segment(3);
             $q                        = $this->db->get_where('tbl_data_riwayat_jabatan', $id);
             $d                        = [];
@@ -129,9 +129,9 @@ class Data_riwayat_jabatan extends CI_Controller
 
     public function tambah()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $d['id_param']        = '';
-            $d['id_pegawai']      = $this->session->userdata('kode_pegawai');
+            $d['id_pegawai']      = session('kode_pegawai');
             $d['status']          = '';
             $d['penempatan']      = '';
             $d['id_jabatan']      = '';
@@ -159,10 +159,10 @@ class Data_riwayat_jabatan extends CI_Controller
 
     public function hapus()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $id['id_riwayat_jabatan'] = $this->uri->segment(3);
             $this->db->delete('tbl_data_riwayat_jabatan', $id);
-            header('location:' . base_url() . 'data_riwayat_jabatan/index/' . $this->session->userdata('kode_pegawai') . '');
+            header('location:' . base_url() . 'data_riwayat_jabatan/index/' . session('kode_pegawai') . '');
         } else {
             header('location:' . base_url() . '');
         }
@@ -170,7 +170,7 @@ class Data_riwayat_jabatan extends CI_Controller
 
     public function simpan()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $this->form_validation->set_rules('id_pegawai', 'Id Pegawai', 'trim|required');
             $this->form_validation->set_rules('status', 'Status', 'trim|required');
             $this->form_validation->set_rules('penempatan', 'Penempatan', 'trim|required');
@@ -217,7 +217,7 @@ class Data_riwayat_jabatan extends CI_Controller
                     $this->load->view('dashboard_admin/master/data_riwayat_jabatan/input', $d);
                 } elseif ($st === 'tambah') {
                     $d['id_param']        = '';
-                    $d['id_pegawai']      = $this->session->userdata('kode_pegawai');
+                    $d['id_pegawai']      = session('kode_pegawai');
                     $d['status']          = '';
                     $d['penempatan']      = '';
                     $d['id_jabatan']      = '';

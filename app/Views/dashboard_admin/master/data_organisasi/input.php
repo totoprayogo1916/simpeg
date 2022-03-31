@@ -42,7 +42,7 @@
 	<?php } ?>
 		<?= form_open('data_organisasi/simpan', 'class="form-horizontal"'); ?>
 		  <div class="control-group">
-		  	<legend>Data Organisasi - <?= $this->session->userdata('nama_pegawai'); ?></legend>
+		  	<legend>Data Organisasi - <?= session('nama_pegawai'); ?></legend>
 			<label class="control-label" for="uraian">Uraian</label>
 			<div class="controls">
 			  <textarea type="text" class="span6" name="uraian" id="uraian"

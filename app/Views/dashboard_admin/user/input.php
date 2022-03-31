@@ -24,7 +24,7 @@
 
   <body>
 	<div class="well">
-	<?= $this->session->flashdata('pass'); ?>
+	<?= session()->getFlashdata('pass'); ?>
 	<?php if (validation_errors()) { ?>
 	<div class="alert alert-block">
 	  <button type="button" class="close" data-dismiss="alert">×</button>

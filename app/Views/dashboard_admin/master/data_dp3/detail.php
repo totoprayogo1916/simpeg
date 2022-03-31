@@ -33,7 +33,7 @@
 	<?php } ?>
 		<?= form_open('data_keluarga/simpan', 'class="form-horizontal"'); ?>
 		  <div class="control-group">
-		  	<legend>Data DP3 - <?= $this->session->userdata('nama_pegawai'); ?></legend>
+		  	<legend>Data DP3 - <?= session('nama_pegawai'); ?></legend>
 			<label class="control-label" for="tahun">Tahun</label>
 			<div class="controls">
 			  <input type="text" class="span6" name="tahun" id="tahun" value="<?= $tahun; ?>"

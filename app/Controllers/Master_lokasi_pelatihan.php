@@ -1,8 +1,8 @@
-<?php if (! defined('BASEPATH')) {
-    exit('No direct script access allowed');
-}
+<?php
 
-class Master_lokasi_pelatihan extends CI_Controller
+namespace App\Controllers;
+
+class Master_lokasi_pelatihan extends BaseController
 {
     /*
         ***	Controller : master_lokasi_pelatihan.php
@@ -12,7 +12,7 @@ class Master_lokasi_pelatihan extends CI_Controller
 
     public function index()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $d['judul_lengkap'] = $this->config->item('nama_aplikasi_full');
             $d['judul_pendek']  = $this->config->item('nama_aplikasi_pendek');
             $d['instansi']      = $this->config->item('nama_instansi');
@@ -49,7 +49,7 @@ class Master_lokasi_pelatihan extends CI_Controller
 
     public function edit()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $id['id_lokasi_pelatihan'] = $this->uri->segment(3);
             $q                         = $this->db->get_where('tbl_master_lokasi_pelatihan', $id);
             $d                         = [];
@@ -68,7 +68,7 @@ class Master_lokasi_pelatihan extends CI_Controller
 
     public function detail()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $id['id_lokasi_pelatihan'] = $this->uri->segment(3);
             $q                         = $this->db->get_where('tbl_master_lokasi_pelatihan', $id);
             $d                         = [];
@@ -87,7 +87,7 @@ class Master_lokasi_pelatihan extends CI_Controller
 
     public function tambah()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $d['id_param']    = '';
             $d['nama_lokasi'] = '';
             $d['st']          = 'tambah';
@@ -99,7 +99,7 @@ class Master_lokasi_pelatihan extends CI_Controller
 
     public function cari()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $d['judul_lengkap'] = $this->config->item('nama_aplikasi_full');
             $d['judul_pendek']  = $this->config->item('nama_aplikasi_pendek');
             $d['instansi']      = $this->config->item('nama_instansi');
@@ -107,11 +107,11 @@ class Master_lokasi_pelatihan extends CI_Controller
             $d['alamat']        = $this->config->item('alamat_instansi');
 
             if ($this->input->post('cari') === '') {
-                $kata = $this->session->userdata('kata');
+                $kata = session('kata');
             } else {
                 $sess_data['kata'] = $this->input->post('cari');
                 $this->session->set_userdata($sess_data);
-                $kata = $this->session->userdata('kata');
+                $kata = session('kata');
             }
 
             $page  = $this->uri->segment(3);
@@ -142,7 +142,7 @@ class Master_lokasi_pelatihan extends CI_Controller
 
     public function hapus()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $id['id_lokasi_pelatihan'] = $this->uri->segment(3);
             $this->db->delete('tbl_master_lokasi_pelatihan', $id);
             header('location:' . base_url() . 'master_lokasi_pelatihan');
@@ -153,7 +153,7 @@ class Master_lokasi_pelatihan extends CI_Controller
 
     public function simpan()
     {
-        if ($this->session->userdata('logged_in') !== '' && $this->session->userdata('stts') === 'administrator') {
+        if (session('logged_in') !== null && session('stts') === 'administrator') {
             $this->form_validation->set_rules('nama_lokasi', 'Nama Lokasi', 'trim|required');
             $id['id_lokasi_pelatihan'] = $this->input->post('id_param');
 

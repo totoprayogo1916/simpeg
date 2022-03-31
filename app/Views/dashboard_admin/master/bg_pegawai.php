@@ -23,12 +23,12 @@
 		  <a class="brand" href="#">Data Pegawai</a>
 		  <div class="nav-collapse">
 			<ul class="nav">
-			  <li><a href="<?= base_url(); ?>pegawai/hapus/<?= $this->session->userdata('kode_pegawai'); ?>" onclick="return confirm('Anda yakin??');"><i class="icon-remove-sign icon-white"></i> Hapus Data Pegawai</a></li>
+			  <li><a href="<?= base_url(); ?>pegawai/hapus/<?= session('kode_pegawai'); ?>" onclick="return confirm('Anda yakin??');"><i class="icon-remove-sign icon-white"></i> Hapus Data Pegawai</a></li>
 			</ul>
 		  </div>
 			<div class="span6 pull-right">
 				<div class="btn-group pull-right">
-				  <button class="btn btn-primary"><i class="icon-user icon-white"></i> <?= $this->session->userdata('nama_pegawai'); ?></button>
+				  <button class="btn btn-primary"><i class="icon-user icon-white"></i> <?= session('nama_pegawai'); ?></button>
 				  <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
 					<span class="caret"></span>
 				  </button>

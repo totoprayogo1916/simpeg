@@ -47,7 +47,7 @@
 		<?= form_open('data_riwayat_jabatan/simpan', 'class="form-horizontal"'); ?>
 
 		  <div class="control-group">
-		  	<legend>Data Riwayat Jabatan - <?= $this->session->userdata('nama_pegawai'); ?></legend>
+		  	<legend>Data Riwayat Jabatan - <?= session('nama_pegawai'); ?></legend>
 			<label class="control-label" for="status">Status</label>
 			<div class="controls">
 			  <select data-placeholder="Status Jabatan" class="chzn-select" style="width:500px;" tabindex="2" name="status" id="status">
